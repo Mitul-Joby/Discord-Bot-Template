@@ -3,6 +3,8 @@
 A template I made used to make a bunch of discord bots.
 Uses MongoDB for custom prefixes for servers/guilds.
 
+**For a simple version without custom prefix and MongoDB check simple-template branch.**
+
 # ABOUT
 Bot can have server/guild only commands, permissions, cooldown, command aliases, etc.
 
