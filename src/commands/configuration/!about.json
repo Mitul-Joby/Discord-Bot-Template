@@ -1,0 +1,7 @@
+{
+    "name"          : "Configuration",
+    "emoji"         : "⚒",
+    "aliases"       : ["config"],
+    "description"   : "Commands to configure bot to server.", 
+    "priority"      : 2
+}

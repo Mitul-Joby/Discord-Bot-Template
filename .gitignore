@@ -1,0 +1,9 @@
+# Temporary commands
+src/commands/temp_
+
+# Configuration Files
+config/config.json
+
+# Node Modules
+node_modules
+package-lock.json

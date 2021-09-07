@@ -1,0 +1,7 @@
+{
+    "name"          : "general",
+    "emoji"         : "🎲",
+    "aliases"       : ["gen"],
+    "description"   : "General commands.", 
+    "priority"      : 1
+}

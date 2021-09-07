@@ -1,0 +1,7 @@
+{
+    "name"          : "testing",
+    "emoji"         : "🧪",
+    "aliases"       : ["test"],
+    "description"   : "Commands under development and testing, only available to developers.", 
+    "priority"      : 9
+}

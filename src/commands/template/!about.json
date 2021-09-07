@@ -1,0 +1,7 @@
+{
+    "name"          : "Name",
+    "emoji"         : "🎃",
+    "aliases"       : ["alias1","alias2"],
+    "description"   : "Description", 
+    "priority"      : 0
+}

@@ -1,0 +1,17 @@
+{
+    "COLOURS" : {        
+        "DEFAULT"            : "HEX-COLOUR",
+        "COLOUR-NAME"        : "HEX-COLOUR",
+        "WHITE"              : "#FFFFFF", 
+        "COMMAND-EMBED-NAME" : "HEX-COLOUR",
+        "HELLO"              : "#E9D428",
+        "HELP"               : "#92B5E1",  
+        "PING"               : "#CEEAED"
+    },
+    "THUMBNAILS" : {        
+        "COMMAND-EMBED-NAME" : "IMAGE-LINK",
+        "HELLO"              : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/383-waving-hand-1.svg/768px-383-waving-hand-1.svg.png",
+        "HELP"               : "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Wikibooks-help-icon.svg/461px-Wikibooks-help-icon.svg.png",   
+        "PING"               : "https://cdn.iconscout.com/icon/free/png-512/satellite-235-456357.png"   
+    }
+}
