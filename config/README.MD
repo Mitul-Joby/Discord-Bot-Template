@@ -8,9 +8,6 @@ JSON file containing:
   - NAMES
 - TOKEN
 - PREFIX
-- MONGODBURL
-- APIKEYS
-  - API-1-NAME ...
 
 Required or use necessary env variables.
 To be created based on format of [example_config.json](./example_config.json).
@@ -23,8 +20,6 @@ List of environment variables to be created:
 - DEVNAMES (Listed out seperated by ,)
 - TOKEN
 - PREFIX
-- MONGODBURL
-- API-NAME ...
 
 ## embeds.json 
 [JSON file](./embeds.json) containing embeds' default colour, various embed's custom colour and thumbnails' links details.

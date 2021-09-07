@@ -7,11 +7,6 @@ module.exports = {
 	botPermissions : ['EMBED_LINKS'],
 	async execute(client, message, args) {
 		
-        if (message.guild) {
-            var prefixData = await client.guildPrefixes.findOne({ guildID: message.guild.id }); 
-        }
-		const prefix = (prefixData) ? prefixData.prefix : client.prefix;
-
 		const helpEmbed = new MessageEmbed()
 		.setColor(client.EMBEDS.COLOURS.HELP)
 		.setThumbnail(client.EMBEDS.THUMBNAILS.HELP)
@@ -19,7 +14,7 @@ module.exports = {
 	
 		if (!args[0]) {
 			helpEmbed.setTitle('COMMAND GUIDE');
-			helpEmbed.setDescription(`**Command Prefix**: \`${prefix}\``);
+			helpEmbed.setDescription(`**Command Prefix**: \`${client.prefix}\``);
 			for (let category of client.categories) {
 				if (!category.commands[0]) continue;
 				if (category.devMode && !client.developers.IDS.includes(message.author.id)) continue;
@@ -66,7 +61,7 @@ module.exports = {
 					if (command.description)
 						helpEmbed.addField('DESCRIPTION',command.description);
 					if (command.usage)
-						helpEmbed.addField('USAGE','```'+prefix+command.usage+'```');
+						helpEmbed.addField('USAGE','```'+client.prefix+command.usage+'```');
 					if (command.aliases)
 						helpEmbed.addField('ALIASES','```'+command.aliases.join(' ')+'```');
 					if (command.guildOnly)

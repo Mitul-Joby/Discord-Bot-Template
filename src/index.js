@@ -7,13 +7,11 @@ console.clear();
 const fs = require('fs');
 if (fs.existsSync('config/config.json')) {
 	var { DEVELOPERS, TOKEN, PREFIX, MONGODBURL, APIKEYS } = require('../config/config.json'); 
-} else if ( (process.env.DEVIDS) && (process.env.DEVNAMES) && (process.env.TOKEN)  && (process.env.PREFIX) && (process.env.MONGODBURL)){
-	var { TOKEN, PREFIX, MONGODBURL } = process.env;
+} else if ( (process.env.DEVIDS) && (process.env.DEVNAMES) && (process.env.TOKEN)  && (process.env.PREFIX)){
+	var { TOKEN, PREFIX} = process.env;
     var DEVELOPERS = new Object();
 	DEVELOPERS.IDS     = process.env.DEVIDS.split(',');
 	DEVELOPERS.NAMES   = process.env.DEVNAMES.split(',');
-	var APIKEYS = new Object();
-    // ADD API KEYS IF PLANS ON USING ENV VARIABLES | EX: APIKEYS.API1 = process.env.API1
 } else {
 	console.error('Missing required configuration variables, check config.json file in config or add to environment variables.');
 	process.exit(1);
@@ -26,9 +24,6 @@ if (fs.existsSync('config/embeds.json')) {
 	process.exit(1); 
 }
 
-const mongoose = require('mongoose');
-mongoose.connect(MONGODBURL).then(console.log('\x1b[32mBot has successfully connected to mongoDB!\x1b[0m'));
-
 const { Client, Collection, Intents } = require('discord.js');
 const intents = [Intents.FLAGS.GUILDS, 
 				 Intents.FLAGS.GUILD_MEMBERS,
@@ -39,10 +34,8 @@ const intents = [Intents.FLAGS.GUILDS,
 				 Intents.FLAGS.DIRECT_MESSAGE_REACTIONS];
 const client = new Client({ intents: intents }); // Add necessary Intents
 
-client.guildPrefixes = require('./models/guildPrefixes');
 client.developers = DEVELOPERS;
 client.prefix     = PREFIX;
-client.APIKEYS    = APIKEYS;
 client.EMBEDS     = EMBEDS;
 client.cooldowns  = new Collection();
 
@@ -77,31 +70,24 @@ client.on('error', async error => {
 
 client.once('ready', () => {
 	console.log(`\x1b[32m${client.user.tag} with ID: ${client.user.id} ready at ${client.readyAt}\x1b[0m`);
-	console.log(`Default Bot prefix is ${client.prefix}`);
-	client.user.setActivity('you!', { type: 'LISTENING'});
+	client.user.setActivity(`${client.prefix}help`, { type: 'LISTENING'});
 });
 
 client.on('messageCreate', async message => {
 	
     if (message.author.bot || message.author.system) return;
-
-    if (message.guild) {
-        var customPrefixData = await client.guildPrefixes.findOne({ guildID: message.guild.id }); 
-    }
-	const prefix = (customPrefixData) ? customPrefixData.prefix : client.prefix;
-
 	if (message.content == `<@${client.user.id}>` || message.content == `<@!${client.user.id}>`) {
-        return message.channel.send(`${prefix}help for help on my commands!`);
+        return message.channel.send(`${client.prefix}help for help on my commands!`);
     } 
 	
-    if (!message.content.startsWith(prefix)) return;
+    if (!message.content.startsWith(client.prefix)) return;
 	
     if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) {
         // If required, send a message to owner/author for perm fix.
         return;
     } 
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const args = message.content.slice(client.prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 	for (let category of client.categories) {
 		if (category.devMode && !client.developers.IDS.includes(message.author.id)) continue;

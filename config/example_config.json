@@ -4,9 +4,5 @@
         "NAMES" : ["NAME-1"]
     },
     "TOKEN"       : "BOT-TOKEN-HERE",
-    "PREFIX"      : "DEFAULT-PREFIX-HERE",
-    "MONGODBURL"  : "MONGODB-CONNECT-URL",
-    "APIKEYS"     : {
-        "API-1-NAME" : "API-1-KEY"
-    }
+    "PREFIX"      : "DEFAULT-PREFIX-HERE"
 }

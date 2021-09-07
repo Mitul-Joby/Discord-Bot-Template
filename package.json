@@ -14,8 +14,7 @@
   "author": "Mitul Joby",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^13.1.0",
-    "mongoose": "^6.0.5"
+    "discord.js": "^13.1.0"
   },
   "devDependencies": {},
   "repository": {
